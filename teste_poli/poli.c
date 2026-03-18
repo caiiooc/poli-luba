@@ -28,14 +28,15 @@ polinomio * poli_create(int grau){
 void poli_destroy(polinomio **p){
     // TODO: Implemente aqui a solucao para operacao destroy
 
+    if (p == NULL || *p == NULL) return -1;
+
     if ((*p)->coeficientes != NULL) { 
         free((*p)->coeficientes); 
+        (*p)->coeficientes = NULL;
     }
 
-    if (*p != NULL) { 
-        free(*p);
-        *p = NULL;  
-    }
+    free(*p);
+    *p = NULL;
 }
 
 int poli_ins_termo(polinomio *p, int exp, int coef) {
