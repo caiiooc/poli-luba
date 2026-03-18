@@ -83,10 +83,21 @@ int poli_ins_termo(polinomio *p, int exp, int coef) {
     return 0;
 }
 
-int poli_get_termo(polinomio *p, int exp, int *coef){
+int poli_get_termo(polinomio *p, int exp, int *coef) { 
+    // Confirmar com o professor se é pra retornar o valor apenas ou se serve como um validador de termo.
+    
     // TODO: Implemente aqui a solucao para operacao get coeficiente
 
-    return 0;
+    // (p, 3, 10)
+
+    if (exp < 0 || exp > p->grau) { 
+        return -1; 
+    }
+
+    // *termo = p->termos[grau específico];
+    *coef = p->coeficientes[exp];
+
+    return 1;
 }
 
 int calcula_px(polinomio *p, int x){
