@@ -7,7 +7,7 @@
 polinomio * poli_create(int grau){
     // TODO: Implemente aqui a solucao para operacao create
 
-    polinomio *p = (polinomio *) malloc(sizeof(polinomio))
+    polinomio *p = (polinomio *) malloc(sizeof(polinomio));
 
     p->grau = grau;
 
