@@ -98,7 +98,7 @@ int poli_get_termo(polinomio *p, int exp, int *coef) {
     // *termo = p->termos[grau específico];
     *coef = p->coeficientes[exp];
 
-    return 1;
+    return 0;
 }
 
 int calcula_px(polinomio *p, int x){
