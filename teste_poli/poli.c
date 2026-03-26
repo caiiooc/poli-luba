@@ -103,38 +103,19 @@ int poli_get_termo(polinomio *p, int exp, int *coef) {
 }
 
 int calcula_px(polinomio *p, int x){
-    // TODO: Implemente aqui a solucao para operacao calcula o valor de P(x)     
-    
-    /*
-    
-    P(x) = x^3 - 5*x + 2
-
-    x = – 1 temos P(– 1) = 6. 
-
-    P(-1) = -1^3 - 5*-1 + 2
-    P(-1) = -1 + 5 + 2
-    P(-1) = -1 + 7
-    P(-1) = 6
-    
-    */
-
-
-    // Aqui importa apenas se p existe, e não se tem ou não algo dentro de p (no caso um ponteiro: *p).
-    // Assim eliminando também a redundância;
-    if (p == NULL) return -1;
-
-    int calculo_polinomio = 0;
-
-
-    // Exemplo: i sendo 0 | p->coeficientes[0] * pow(-1, 0) | 2 * -1^0 | 2 * 1 = 2
-
-    for (int i = 0; i <= p->grau; i++) {
-        if (p->coeficientes[i] != 0) { // Aqui é diferente de zero porque se o termo for 0 ele não existe.
-            calculo_polinomio += p->coeficientes[i] * pow(x, i);
+    // TODO: Implemente aqui a solucao para operacao calcula o valor de P(x)  
+    if(p == NULL){
+        return 0;
+    }   
+    int resultado = 0;
+    for(int i = 0; i <= p->grau; i++){
+        int potencia = 1;
+        for(int j = 0; j < i; j++){
+            potencia *= x;
         }
+        resultado += p->coeficientes[i] * potencia;
     }
-
-    return calculo_polinomio;
+    return resultado;
 }
 
 polinomio * poli_soma(polinomio *p, polinomio *q){
