@@ -151,8 +151,29 @@ polinomio * poli_mult(polinomio *p, polinomio *q){
 
 polinomio * poli_div(polinomio *p, polinomio *q){
     // TODO: Implemente aqui a solucao para operacao que divide dois polinomios e gera um terceiro
+    if(p == NULL || q == NULL){
+        return NULL;
+    }
+    if(q->grau == 0 && q->coeficientes[0] == 0){
+        return NULL;
+    }
+    if(p->grau < q->grau){
+        return poli_create(0);
+    }
 
-    return NULL;
+    int grau_res = p->grau - q->grau;
+    polinomio *res = poli_create(grau_res);
+
+    while(p->grau >= q->grau){
+        int coef = p->coeficientes[p->grau]/q->coeficientes[q->grau];
+        int exp = p->grau - q->grau;
+        poli_ins_termo(res, exp, coef);
+        for(int i = 0; i <= q->grau; i++){
+            p->coeficientes[i + exp] -= coef * q->coeficientes[i];
+        }
+        while(p->grau > 0 && p->coeficientes[p->grau] == 0){
+            p->grau--;
+        }
+    }
+    return res;
 }
-
-
