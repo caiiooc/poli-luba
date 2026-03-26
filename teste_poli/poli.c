@@ -119,9 +119,36 @@ int calcula_px(polinomio *p, int x){
 }
 
 polinomio * poli_soma(polinomio *p, polinomio *q){
-    // TODO: Implemente aqui a solucao para operacao que soma dois polinomios e gera um terceiro
+    if (p == NULL || q == NULL) return NULL;
 
-    return NULL;
+    // 1. O grau do resultado é o maior entre os dois
+    int maior_grau = (p->grau > q->grau) ? p->grau : q->grau;
+    
+    // 2. Cria o novo polinômio para guardar o resultado
+    polinomio *res = poli_create(maior_grau);
+    if (res == NULL) return NULL;
+
+    // 3. Percorre até o maior grau somando o que existir
+    for (int i = 0; i <= maior_grau; i++) {
+        int v_p = 0;
+        int v_q = 0;
+
+        // Se o expoente 'i' existir em P, pega o coeficiente
+        if (i <= p->grau) v_p = p->coeficientes[i];
+        
+        // Se o expoente 'i' existir em Q, pega o coeficiente
+        if (i <= q->grau) v_q = q->coeficientes[i];
+
+        // A soma acontece aqui (Ex: 4x^6 + (-1x^6) = 3x^6)
+        int soma_coef = v_p + v_q;
+
+        // Insere no polinômio de resultado
+        if (soma_coef != 0) {
+            poli_ins_termo(res, i, soma_coef);
+        }
+    }
+
+    return res;
 }
 
 polinomio * poli_mult(polinomio *p, polinomio *q){
